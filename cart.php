@@ -59,11 +59,15 @@ $ok_user = 0;
 		$USERNAME = $_SESSION['username'];
 		$account = DataProvider::executeQuery("SELECT * FROM taikhoan WHERE USERNAME = '$USERNAME' LIMIT 1");
 		$re = mysqli_fetch_assoc($account);
+		//print_r($re);
 		if($re['LEVEL'] != '0') {
 			$ok_user = 1;
 		} else {
 		$ok_user = 2;
 		}
+	}
+	else {
+		$re['IDUSER'] = 0;
 	}
 	?>
 

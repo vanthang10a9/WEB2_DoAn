@@ -4,7 +4,7 @@ if (basename($_SERVER['PHP_SELF'], ".php") == "product-single") {
 } else {
     $limit = 8;
 }
-$sql = "SELECT * FROM sanpham ORDER BY RAND() LIMIT $limit";
+$sql = "SELECT * FROM sanpham WHERE DUYET = 2 ORDER BY RAND() LIMIT $limit";
 $result = DataProvider::executeQuery($sql);
 if ($result != null) {
     while ($row = mysqli_fetch_array($result)) { ?>

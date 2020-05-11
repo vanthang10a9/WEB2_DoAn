@@ -95,7 +95,7 @@
 				$start = ($current_page - 1) * $limit;
 
 				//lấy dánh sách sản phẩm
-				$sql = "SELECT * FROM sanpham WHERE '1' = '1'" . $condition . " LIMIT $start, $limit";
+				$sql = "SELECT * FROM sanpham WHERE '1' = '1' AND DUYET = 2 " . $condition . " LIMIT $start, $limit";
 				$result = DataProvider::executeQuery($sql);
 				if ($result != null) {
 					while ($row = mysqli_fetch_array($result)) { ?>

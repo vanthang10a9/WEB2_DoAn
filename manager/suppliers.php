@@ -148,7 +148,7 @@ include("includes/head.php");
             var selector = $(this).closest('tr');
             var id = selector.attr('mancc');
             //var tds = $(this).closest('tr').find('td');
-            $('#deleteModal .modal-body p').html("Xác nhận xóa sản phẩm ?");
+            $('#deleteModal .modal-body p').html("Xác nhận xóa Nhà cung cấp này ?");
             $("#deleteModal").modal("show");
             $('#deleteModal').on('click', '#submit-delete', function(event) {
                 $.ajax({

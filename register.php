@@ -101,9 +101,15 @@
     <script src="admin/js/sb-admin-2.min.js"></script>
     <script src="admin/js/validator.js"></script>
 
-    <script>
+    <script> 
+    // xử lí validate = js tại client, data ok, rồi gọi hàm sendDataRegis, ajax check data hợp lệ, hay ko rồi truy vấn database
         var ok = 0;
         $('#submit-regis').on('click', function(e) {
+            sendDataRegis();
+        });
+
+        function sendDataRegis() {
+
             var x = $('#user-regis').serializeArray();
             x.push({
                 'name': 'user-action',
@@ -118,20 +124,20 @@
                         ok = 1;
                         $('#alertModal .modal-body p').html("Đăng kí thành công, Ok để đăng nhập");
                         $('#alertModal').modal('show');
-                    }
-                    else {
+                    } else {
                         $('#alertModal .modal-body p').html("Tài khoản bị trùng");
                         $('#alertModal').modal('show');
                     }
 
                 }
             });
-        });
-        $('#alertModal').on('hidden.bs.modal', function(e) {
-            if(ok==1) {
-            location.href = 'login.php';
-            }
-		})
+        }
+
+            $('#alertModal').on('hidden.bs.modal', function(e) {
+                if (ok == 1) {
+                    location.href = 'login.php';
+                }
+            })
     </script>
 </body>
 

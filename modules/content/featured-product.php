@@ -4,7 +4,7 @@ if (basename($_SERVER['PHP_SELF'], ".php") == "product-single") {
 } else {
     $limit = 8;
 }
-$sql = "SELECT * FROM sanpham WHERE DUYET = 2 ORDER BY RAND() LIMIT $limit";
+$sql = "SELECT * FROM sanpham ORDER BY RAND() LIMIT $limit";
 $result = DataProvider::executeQuery($sql);
 if ($result != null) {
     while ($row = mysqli_fetch_array($result)) { ?>
@@ -21,14 +21,15 @@ if ($result != null) {
                             <p class="price">
                                 <?php
                                         if (!empty($row['KMSP'])) {
-                                            $price = $row['GIASP'] - ($row['GIASP'] * $row['KMSP']) / 100; ?>
-                                    <span class="mr-2 price-dc"><?php echo $row['GIASP']; ?> Đ</span>
+                                            $price = $row['GIASP'] - ($row['GIASP'] * $row['KMSP']) / 100;
+                                            ?>
+                                    <span class="mr-2 price-dc"><?php echo number_format($row['GIASP'],0,".","."); ?> Đ</span>
                                 <?php
                                         } else {
                                             $price = $row['GIASP'];
                                         }
                                         ?>
-                                <span class="price-sale"><?php echo $price; ?> Đ</span>
+                                <span class="price-sale"><?php echo number_format( $price,0,".","." ); ?> Đ</span>
                             </p>
                         </div>
                     </div>
@@ -37,7 +38,7 @@ if ($result != null) {
                             <a href="product-single.php?id=<?php echo $row['MASP']; ?>" class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                 <span><i class="ion-ios-menu"></i></span>
                             </a>
-                            <a href="" class="buy-now d-flex justify-content-center align-items-center mx-1" id="addcart-<?php echo $row['MASP']; ?>">
+                            <a href="javascript:void(0)" class="buy-now d-flex justify-content-center align-items-center mx-1" id="addcart-<?php echo $row['MASP']; ?>">
                                 <span><i class="ion-ios-cart"></i></span>
                             </a>
                             <!-- <a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -48,6 +49,9 @@ if ($result != null) {
                     <script type="text/javascript">
                         var mount;
                         $("a#addcart-<?php echo $row['MASP']; ?>").click(function(e) {
+                            <?php 
+                                if(isset($_SESSION['username'])){
+                            ?>
                             e.preventDefault();
                             var item = {
                                 'id': $(".product-id-<?php echo $row['MASP'] ?>").attr('id'),
@@ -66,6 +70,9 @@ if ($result != null) {
                                     //window.location.reload();
                                 }
                             });
+                        <?php }else{?>
+                            alert("Bạn phải đăng nhập mới được mua hàng.");
+                        <?php } ?>
                         });
                     </script>
                 </div>

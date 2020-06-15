@@ -16,7 +16,7 @@
                             <div class="text text-center">
                                 <h2>Pizza</h2>
                                 <p>Vị ngon trên từng mẫu bánh</p>
-                                <p><a href="#" class="btn btn-primary">Mua ngay</a></p>
+                                <p><a href="shop.php" class="btn btn-primary">Mua ngay</a></p>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                     foreach($arrayCategories as &$arr) {                             
                 ?>
                     <div class='col-md-4'>
-                        <div class='category-wrap ftco-animate img mb-4 d-flex align-items-end' style="background-image: url(images/products/<?php echo $arr['HINHANHSP']; ?>);" >
+                        <div class='category-wrap ftco-animate img mb-4 d-flex align-items-end' style="background-image: url(images/products/<?php echo $arr['HINHANHSP']; ?>.png);" >
                             <div class='text px-3 py-1'>
                                 <h2 class='mb-0'><a href="shop.php?category=<?php echo $arr['MACL'] ?>"><?php echo $arr['TENCL']; ?></a></h2>
                             </div>

@@ -56,7 +56,7 @@ include("includes/head.php");
                                         $sql = "SELECT * FROM loaisanpham";
                                         $result = DataProvider::executeQuery($sql);
                                         while ($row = mysqli_fetch_assoc($result)) {
-                                        ?>
+                                            ?>
                                             <tr id="<?php echo $row['MACL']; ?>">
                                                 <td><?php echo $row['MACL']; ?></td>
                                                 <td><?php echo $row['TENCL']; ?></td>
@@ -150,8 +150,8 @@ include("includes/head.php");
                 "targets": 2,
                 "targets": -1,
                 "data": null,
-                "defaultContent": '<button class="btn btn-outline-info m-1 edit"><i class="fa fa-edit"></i></button>' +
-                    '<button class="btn btn-outline-danger m-1 delete"><i class="fa fa-trash"></i></button>'
+                "defaultContent": '<button class="btn btn-outline-info m-1 edit"><i class="fa fa-edit"></i></button>',
+                    // '<button class="btn btn-outline-danger m-1 delete"><i class="fa fa-trash"></i></button>'
             }]
         });
 
@@ -238,44 +238,6 @@ include("includes/head.php");
             });
             e.preventDefault();
         });
-
-        //Handle click on "delete" button
-        $('#dataTable tbody').on('click', '.delete', function(e) {
-            var selector = $(this).closest('tr');
-            var id = selector.attr('id');
-            //var tds = $(this).closest('tr').find('td');
-            $('#deleteModal .modal-body p').html("Xác nhận xóa danh mục ?");
-            $("#deleteModal").modal("show");
-            $('#deleteModal').on('click', '#submit-delete', function(event) {
-                $.ajax({
-                    type: "POST",
-                    url: "handler.php",
-                    data: {
-
-                        'action-category': 'delete',
-                        'id': id
-                    },
-                    success: function(response) {
-                        $('#dataTable').DataTable().row(selector).remove().draw(false);
-                        $("#deleteModal").modal("hide");
-                        if (response != 1) {
-                            $('#alertModal .modal-body p').html(response);
-                            $('#alertModal').modal('show');
-
-                        }
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-
-                        alert("Duyệt thất bại");
-
-                    }
-                });
-                event.preventDefault();
-            });
-        });
-        $('#alertModal').on('hide.bs.modal', function() {
-            location.reload();
-        })
     </script>
 
 </body>

@@ -35,7 +35,11 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url(admin/congcu/img/bg_login.jpg)"></div>
+                            <div class="col-lg-6 d-none d-lg-block " >
+                                <a href="index.php">
+                                    <img src="admin/congcu/img/bg_login.jpg" width="475" height="453" >
+                                </a>
+                            </div>
                             <div class="col-lg-6 ">
                                 <div class="p-5 ">
                                     <div class="text-center ">
@@ -132,7 +136,8 @@
         $('#alertModal').on('hidden.bs.modal', function(e) {
             if (ok == 1) {
                 location.href = 'index.php';
-            }else{
+            }
+            else{
                 location.href = 'admin/index.php';
             }
             // if (ok == 2) {

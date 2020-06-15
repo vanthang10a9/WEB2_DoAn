@@ -4,16 +4,6 @@ require 'core/DataProvider.php';
 if (!isset($_SESSION)) {
     session_start();
 }
-// điều hướng trang về phần admin nếu có account admin đang đăng nhập
-// if (isset($_SESSION['username'])) {
-//     if ($_SESSION['username'] == 'manager')
-//         header('Location: ../httt/manager/');
-//     if ($_SESSION['username'] == 'admin')
-//         header('Location: ../httt/admin/');
-//     if ($_SESSION['username'] == 'staff')
-//         header('Location: ../httt/staff/');
-// }
-
 $icon_cart = 0;
 if (isset($_SESSION['cart'])) {
     foreach ($_SESSION['cart'] as $k => $v) {
@@ -67,9 +57,14 @@ if (isset($_SESSION['username'])) {
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mua sắm</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="shop.php">Mua sắm</a>
-
-                        <a class="dropdown-item" href="cart.php">Giỏ hàng</a>
-                        <a class="dropdown-item" id="subitem-checkout" href="checkout.php">Thanh toán</a>
+                        <?php 
+                        if(isset($_SESSION['username'])){
+                        ?>
+                            <a class="dropdown-item" href="cart.php">Giỏ hàng</a>
+                            <!-- <a class="dropdown-item" id="subitem-checkout" href="checkout.php">Thanh toán</a> -->
+                        <?php 
+                        } 
+                        ?>
                     </div>
                 </li>
                 <li class="nav-item nav-item-about"><a href="about.php" class="nav-link">Thông tin</a></li>
@@ -103,7 +98,7 @@ if (isset($_SESSION['username'])) {
                     </li>
                 <?php
                 } else {
-                ?>
+                    ?>
                     <li class="nav-item"><a href="login.php" class="nav-link">Đăng nhập</a></li>
                     <li class="nav-item"><a href="register.php" class="nav-link">Đăng kí</a></li>
                 <?php
@@ -133,3 +128,4 @@ if (isset($_SESSION['username'])) {
         </div>
     </div>
 </div>
+

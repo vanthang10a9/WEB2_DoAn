@@ -89,13 +89,13 @@
 						<?php
 						if (!empty($row['KMSP'])) {
 							$price = $row['GIASP'] - ($row['GIASP'] * $row['KMSP']) / 100; ?>
-							<span class="mr-2 price-dc"><?php echo $row['GIASP']; ?></span>
+							<span class="mr-2 price-dc"><?php echo number_format($row['GIASP'],0,".",".").' Đ'; ?></span>
 						<?php
 						} else {
 							$price = $row['GIASP'];
 						}
 						?>
-						<span class="price-sale"><?php echo $price; ?></span></p>
+						<span class="price-sale"><?php echo number_format($price,0,".",".").' Đ'; ?></span></p>
 					<p><?php echo $row['MOTASP'] ?>
 					</p>
 					<div class="row mt-4">
@@ -140,7 +140,7 @@
 							<p id="textsl" style="color: #000;"><?php echo $textsl; ?></p>
 						</div>
 					</div>
-					<p><a href="" class="btn btn-black py-3 px-5" id="add-cart">Thêm vào giỏ hàng</a></p>
+					<p><a href="javascript:void(0)" class="btn btn-black py-3 px-5" id="add-cart">Thêm vào giỏ hàng</a></p>
 				</div>
 			</div>
 		</div>
@@ -198,7 +198,7 @@
 			var soluongsp = <?php echo $soluongsp; ?>;
 			var quantitiy = 0;
 			$('.quantity-right-plus').click(function(e) {
-
+				
 				// Stop acting like a button
 				e.preventDefault();
 				// Get the field name
@@ -222,12 +222,15 @@
 				// If is not undefined
 
 				// Increment
-				if (quantity > 0) {
+				if (quantity > 1) {
 					$('#quantity').val(quantity - 1);
 				}
 			});
 
 			$('a#add-cart').click(function(e) {
+				<?php 
+					if(isset($_SESSION['username'])){
+				?>
 				e.preventDefault();
 				//xử lí alert ko đủ hàng
 				var mount;
@@ -241,9 +244,13 @@
 					alert("Không đủ hàng !");
 					return;
 				} else {
+					var quantity = $('#quantity').val() ; 
+					if( quantity < 1 ){
+						quantity = 1;
+					}
 					item = {
 						'id': '<?php echo $idSP; ?>',
-						'quantity': $('#quantity').val()
+						'quantity': quantity
 					}
 					$.ajax({
 						type: "POST",
@@ -264,6 +271,11 @@
 						}
 					})
 				}
+			<?php }else{
+				?>
+					alert("Bạn phải đăng nhập mới được mua hàng.");
+				<?php
+			} ?>
 			});
 
 		});

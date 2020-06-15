@@ -27,7 +27,7 @@ $result = DataProvider::executeQuery($sql);
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Danh sách sản phẩm</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Danh sách danh mục</h1>
 
                     <!-- Table button -->
                     <div class="d-flex flex-row-reverse" id="reverse">

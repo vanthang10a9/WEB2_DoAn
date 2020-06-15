@@ -142,14 +142,14 @@ include("includes/head.php");
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script type="text/javascript" charset="utf-8">
-        $('#dataTable').dataTable({
-            "columnDefs": [{
-                "targets": -1,
-                "data": null,
-                "defaultContent": '<button class="btn btn-outline-info m-1 activation"><i class="fa fa-check"></i></button>' +
-                    '<button class="btn btn-outline-danger m-1 delete"><i class="fa fa-times"></i></button>'
-            }]
-        });
+        // $('#dataTable').dataTable({
+        //     "columnDefs": [{
+        //         "targets": -1,
+        //         "data": null,
+        //         "defaultContent": '<button class="btn btn-outline-info m-1 activation"><i class="fa fa-check"></i></button>' +
+        //             '<button class="btn btn-outline-danger m-1 delete"><i class="fa fa-times"></i></button>'
+        //     }]
+        // });
 
         //Handle click on "Edit" button
         $('#dataTable tbody').on('click', '.activation', function(e) {

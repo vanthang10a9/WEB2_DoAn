@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 26, 2019 lúc 04:10 PM
--- Phiên bản máy phục vụ: 10.4.8-MariaDB
--- Phiên bản PHP: 7.3.10
+-- Thời gian đã tạo: Th5 18, 2020 lúc 06:35 AM
+-- Phiên bản máy phục vụ: 10.4.11-MariaDB
+-- Phiên bản PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -64,7 +63,9 @@ INSERT INTO `chitietdonhang` (`MADH`, `MASP`, `SOLUONG`, `GIASP`) VALUES
 (8, 'TT002', 2, 99000),
 (10, 'HS004', 1, 119000),
 (10, 'NN001', 2, 99000),
-(10, 'TT006', 5, 99000);
+(10, 'TT006', 5, 99000),
+(26, 'HS001', 1, 215100),
+(26, 'HS002', 1, 191200);
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,8 @@ INSERT INTO `donhang` (`MADH`, `IDUSER`, `NAME`, `PHONE`, `ADDRESS`, `EMAIL`, `T
 (6, 24, 'Võ Ái Lan', '0987654214', 'ÁiNhư', 'ÁiNhư@gmail.com', 27055000, '2019-10-20', 1, 4),
 (7, 9, 'Nguyễn Anh Thuận', '0987654479', 'VănTuấn', 'VănTuấn@gmail.com', 79956000, '2019-10-20', 1, 4),
 (8, 25, 'Lương Thái Tuấn', '0987654630', 'HuyềnLan', 'HuyềnLan@gmail.com', 118000, '2019-04-30', 1, 4),
-(10, 13, 'Phan Quốc Tuấn', '0987654798', 'ÁiLinh', 'ÁiLinh@gmail.com', 2675000, '2019-01-01', 1, 3);
+(10, 13, 'Phan Quốc Tuấn', '0987654798', 'ÁiLinh', 'ÁiLinh@gmail.com', 2675000, '2019-01-01', 1, 3),
+(26, 26, '', '', '', '', 421300, '2020-05-12', 0, 26);
 
 -- --------------------------------------------------------
 
@@ -147,15 +149,15 @@ CREATE TABLE `donnhap` (
 --
 
 INSERT INTO `donnhap` (`MADN`, `MANV`, `TONGTIEN`, `NGAYNHAP`, `DUYET`) VALUES
-(1, 3, 150000, '2017-02-06', 1),
-(2, 3, 218000, '2017-02-14', 1),
-(3, 4, 80000, '2019-04-02', 1),
-(4, 3, 218000, '2018-02-28', 1),
-(5, 4, 100000, '2019-06-11', 1),
-(6, 3, 150000, '2019-08-07', 1),
-(7, 3, 375000, '2019-10-25', 1),
-(8, 4, 50000, '2017-03-18', 1),
-(9, 4, 120000, '2018-12-26', 1);
+(1, 3, 150000, '2017-02-06 00:00:00', 1),
+(2, 3, 218000, '2017-02-14 00:00:00', 1),
+(3, 4, 80000, '2019-04-02 00:00:00', 1),
+(4, 3, 218000, '2018-02-28 00:00:00', 1),
+(5, 4, 100000, '2019-06-11 00:00:00', 1),
+(6, 3, 150000, '2019-08-07 00:00:00', 1),
+(7, 3, 375000, '2019-10-25 00:00:00', 1),
+(8, 4, 50000, '2017-03-18 00:00:00', 1),
+(9, 4, 120000, '2018-12-26 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -293,15 +295,19 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`MASP`, `MACL`, `TENSP`, `TENSPKD`, `GIASP`, `KMSP`, `MOTASP`, `MANCC`, `DUYET`, `HINHANHSP`, `SOLUONGSP`) VALUES
+('DB001', 7, 'Pizza Đặc Biệt', 'pizza dac biet', 240000, 0, 'Pizza đặc biệt kết hợp nhiều toppong', 3, 2, 'DacBiet.png', 1),
 ('HS001', 3, 'Pizza \"Lẩu\" Thái Tom', 'pizza lau thai tom', 239000, 10, '<p>Pizza Tom Yum Kung, lấy cảm hứng từ món lẩu Tom Yum nổi tiếng Thái Lan,\"đánh bật\" vị giác với sốt Tom Yum chua chua, cay cay, ngọt ngọt, béo béo làm thay đổi hoàn toàn nhận định của bạn về chiếc bánh pizza đơn thuần.</p>\r\n', 1, 2, 'LauThaiTom.png', 1),
 ('HS002', 3, 'Pizza Hải Sản Pesto', 'pizza hai san pesto', 239000, 20, '<p>Quý cô Pizza Hải Sản sốt Pesto đúng chất \"sành điệu kiểu Ý\": Làm cho bạn có cảm giác khác lạ lúc ban đầu, nhưng một khi đã \"tiếp xúc\" thì sẽ mê mẩn ngay càng xa càng nhớ.</p>\r\n', 5, 2, 'HaiSanPesto.png', 1),
 ('HS003', 3, 'Pizza Hải Sản Cao Cấp', 'hai san cao cap', 119000, 0, '<p>Pizza tuyệt hảo từ hải sản tươi ngon tôm, cua, mực và nghêu mang bạn đến thiên đường hải sản></p>\r\n', 10, 2, 'HaiSanCaoCap.png', 1),
 ('HS004', 3, 'Pizza Hải Sản Cocktail', 'hai san cocktail', 119000, 0, '<p>Pizza hải sản với sốt Thousand Island và vô vàn các topping tươi ngon từ tôm, cua, giăm bông,...</p>\r\n', 5, 2, 'HaiSanCocktail.png', 1),
 ('HS005', 3, 'Pizza Hải Sản Nhiệt Đới', 'hai san nhiet doi', 119000, 0, '<p>Với sự kết hợp hoàn hảo của hải sản vùng nhiệt đới như tôm, nghêu, mực, cua, dứa với sốt Thousand Island.></p>\r\n', 3, 2, 'HaiSanNhietDoi.png', 1),
 ('HS006', 3, 'Pizza Tôm Cocktail', 'tom cocktail', 119000, 0, '<p>Pizza cocktail tôm với nấm, dứa, cà chua và sốt Thousand Island.</p>\r\n', 4, 2, 'TomCocktail.png', 1),
+('HW001', 8, 'Pizza Hawaii', 'pizza hawaii', 150000, 0, 'Pizza hawaii kết hợp nhiều toppong', 3, 2, 'Hawaiian.png', 1),
 ('NN001', 4, '5 Loại Thịt Đặc Biệt', '5 loai thit dac biet', 99000, 0, '<p>Nhân nhồi bên trong siêu thượng hạng với nhiểu loại thịt và rau phong phú.</p>\r\n', 7, 2, '5LoaiThitDD.png', 1),
 ('NN002', 4, 'Hawaiian Nhân Nhồi', 'hawaiian nhân nhồi', 89000, 0, '<p>Nhân nhồi bên trong là đặc trưng miền nhiệt đới với giăm bông, thịt muối và dứa.</p>\r\n', 1, 2, 'HawaiianNN.png', 1),
 ('NN003', 4, 'Gà Nướng 3 Vị Nhân Nhồi', 'ga nuong 3 vi nhan nhoi', 89000, 15, '<p>Nhân nhồi bên trong được kết hợp giữa ba cách chế biến gà nướng, gà bơ tỏi và gà ướp sốt nấm mang đến cho bạn hương vị mới lạ.</p>\r\n', 9, 2, 'GaNuong3ViNN.png', 1),
+('PC001', 6, 'Pizza Chay', 'pizza chay', 120000, 0, 'Pizza chay thơm ngon, giòn', 6, 2, 'Chay.png', 1),
+('PN001', 5, 'Pizza Nướng', 'pizza nuong', 120000, 0, 'Pizza Nướng thơm ngon, giòn', 2, 2, 'Nuong.png', 1),
 ('TC001', 2, 'Pizza Aloha', 'aloha', 109000, 0, '<p>Thịt nguội, xúc xích tiêu cay và dứa hòa quyện với sôt Thousand Island mang đến hương vị đặc trưng của bánh./p>\r\n', 5, 2, 'aloha.png', 1),
 ('TC002', 2, 'Ba Loại Thịt Thập Cẩm', 'ba loai thit thap cam', 109000, 0, '<p>Bánh là sự kết hợp hài hòa\r\ncủa ba loại thịt và rau củ.</p>\r\n', 4, 2, 'BaLoaiThit.png', 1),
 ('TC003', 2, 'Pizza Thịt Xông Khói', 'thit xong khoi', 109000, 30, '<p>Bánh pizza kết hợp giữa thịt giăm bông, thịt xông khói và hai loại rau của ớt xanh, cà chua.</p>\r\n', 6, 2, 'ThitXongKhoi.png', 1),
@@ -364,7 +370,9 @@ INSERT INTO `taikhoan` (`IDUSER`, `USERNAME`, `PASSWORD`, `NAME`, `CMND`, `ADDRE
 (22, 'khachhang23', '123456', 'Trần Hồng Ngọc', '0154809071', 'HồngNgọc', 'HồngNgọc@gmail.com', '0987654635', 1, 1),
 (23, 'khachhang24', '123456', 'Nguyễn Quốc Thắng', '0476762185', 'AnhPhúc', 'AnhPhúc@gmail.com', '0987654445', 1, 1),
 (24, 'khachhang25', '123456', 'Võ Ái Lan', '0464515268', 'ÁiNhư', 'ÁiNhư@gmail.com', '0987654214', 1, 1),
-(25, 'khachhang26', '123456', 'Lương Thái Tuấn', '0478465707', 'HuyềnLan', 'HuyềnLan@gmail.com', '0987654630', 1, 1);
+(25, 'khachhang26', '123456', 'Lương Thái Tuấn', '0478465707', 'HuyềnLan', 'HuyềnLan@gmail.com', '0987654630', 1, 1),
+(26, 'trunghien', '123123', 'huỳnh trung hiển', '', '6', 'hienhuynh076@gmail.com', '0925351662', 0, 1),
+(27, '', '', '', '', '', '', '', 0, 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -446,7 +454,7 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `MADH` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `MADH` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT cho bảng `donnhap`
@@ -482,7 +490,7 @@ ALTER TABLE `phanhoi`
 -- AUTO_INCREMENT cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `IDUSER` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `IDUSER` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

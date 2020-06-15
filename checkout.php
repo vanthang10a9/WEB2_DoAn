@@ -105,11 +105,11 @@ $madh = isset($_GET['madh']) ? $_GET['madh'] : "";
 								<h3 class="billing-heading mb-4">Tổng chi</h3>
 								<p class="d-flex">
 									<span>Tổng tiền sản phẩm</span>
-									<span><?php if($re_order['TONGTIEN'] !=0 ) echo ($re_order['TONGTIEN'] - 15000); ?></span>
+									<span><?php if($re_order['TONGTIEN'] !=0 ) echo ($re_order['TONGTIEN'] - 15.000); ?></span>
 								</p>
 								<p class="d-flex">
 									<span>Phí giao</span>
-									<span>15000 VNĐ</span>
+									<span>15.000 VNĐ</span>
 								</p>
 								<p class="d-flex">
 									<span> Giảm giá</span>

@@ -28,7 +28,7 @@ include("includes/head.php");
                     <h1 class="h3 mb-2 text-gray-800">Danh sách danh mục</h1>
 
                     <!-- Table button -->
-                    <!-- <div class="d-flex flex-row-reverse">
+                    <div class="d-flex flex-row-reverse">
                         <button type="button" class="btn btn-secondary mb-1">
                             <i class="fa fa-sync-alt"></i>
                         </button>
@@ -36,7 +36,7 @@ include("includes/head.php");
                             <i class="fa fa-plus"></i>
                         </button>
 
-                    </div> -->
+                    </div>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -56,7 +56,7 @@ include("includes/head.php");
                                         $sql = "SELECT * FROM loaisanpham";
                                         $result = DataProvider::executeQuery($sql);
                                         while ($row = mysqli_fetch_assoc($result)) {
-                                            ?>
+                                        ?>
                                             <tr id="<?php echo $row['MACL']; ?>">
                                                 <td><?php echo $row['MACL']; ?></td>
                                                 <td><?php echo $row['TENCL']; ?></td>
@@ -121,9 +121,7 @@ include("includes/head.php");
 
     <?php
     include('includes/scroll-logout.php');
-    include('includes/scripts.php');
-    include('deleteModal.php');
-    include('alertModal.php');
+    include('includes/scripts.php')
     ?>
     <!-- Page level plugins -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
@@ -173,7 +171,7 @@ include("includes/head.php");
             var filename = imageSrc.split('/').pop()
             $('.js-file-image').attr('src', imageSrc);
             $('#image-label').text(filename);
-            $('.js-file-image').attr('name', filename);
+            //$('.js-file-image').attr('name', filename);
             categoryAction = "edit";
             $("#categoryModal").modal("show");
             //edit category
@@ -194,7 +192,7 @@ include("includes/head.php");
                     imageNameGlobal = file.name;
                     var fileSize = file.size;
                     $('.js-file-image').attr('src', imageSrcGlobal);
-                    $('.js-file-image').attr('name', imageNameGlobal);
+                    //$('.js-file-image').attr('name', imageNameGlobal);
                     $('#image-label').text(imageNameGlobal);
                 };
                 fileReader.readAsDataURL(file);
@@ -261,9 +259,9 @@ include("includes/head.php");
                         $('#dataTable').DataTable().row(selector).remove().draw(false);
                         $("#deleteModal").modal("hide");
                         if (response != 1) {
-                            $('#alertModal .modal-body p').html(response);                       
+                            $('#alertModal .modal-body p').html(response);
                             $('#alertModal').modal('show');
-                            
+
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -274,7 +272,6 @@ include("includes/head.php");
                 });
                 event.preventDefault();
             });
-
         });
         $('#alertModal').on('hide.bs.modal', function() {
             location.reload();

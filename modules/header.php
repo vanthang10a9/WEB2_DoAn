@@ -5,14 +5,15 @@ if (!isset($_SESSION)) {
     session_start();
 }
 // điều hướng trang về phần admin nếu có account admin đang đăng nhập
-if (isset($_SESSION['username'])) {
-    if ($_SESSION['username'] == 'manager')
-        header('Location: ../httt/manager/');
-    if ($_SESSION['username'] == 'admin')
-        header('Location: ../httt/admin/');
-    if ($_SESSION['username'] == 'staff')
-        header('Location: ../httt/staff/');
-}
+// if (isset($_SESSION['username'])) {
+//     if ($_SESSION['username'] == 'manager')
+//         header('Location: ../httt/manager/');
+//     if ($_SESSION['username'] == 'admin')
+//         header('Location: ../httt/admin/');
+//     if ($_SESSION['username'] == 'staff')
+//         header('Location: ../httt/staff/');
+// }
+
 $icon_cart = 0;
 if (isset($_SESSION['cart'])) {
     foreach ($_SESSION['cart'] as $k => $v) {

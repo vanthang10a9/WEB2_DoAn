@@ -132,16 +132,18 @@
         $('#alertModal').on('hidden.bs.modal', function(e) {
             if (ok == 1) {
                 location.href = 'index.php';
-            }
-            if (ok == 2) {
-                location.href = 'staff/index.php';
-            }
-            if (ok == 3) {
-                location.href = 'manager/index.php';
-            }
-            if (ok == 4) {
+            }else{
                 location.href = 'admin/index.php';
             }
+            // if (ok == 2) {
+            //     location.href = 'staff/index.php';
+            // }
+            // if (ok == 3) {
+            //     location.href = 'manager/index.php';
+            // }
+            // if (ok == 4) {
+            //     location.href = 'admin/index.php';
+            // }
         });
     </script>
 

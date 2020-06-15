@@ -1,6 +1,8 @@
 <?php
 $sqlcat = "SELECT * FROM loaisanpham";
 $run = DataProvider::executeQuery($sqlcat);
+$sqlsup = "SELECT * FROM nhacungcap";
+$runsup = DataProvider::executeQuery($sqlsup);
 ?>
 <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -14,34 +16,44 @@ $run = DataProvider::executeQuery($sqlcat);
             <div class="modal-body">
                 <form id="product">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="productcode" placeholder="Mã sản phẩm">
+                        <input type="text" class="form-control" name="productcode" id="productcode" placeholder="Mã sản phẩm">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="productname" placeholder="Tên sản phẩm">
+                        <input type="text" class="form-control" name="productname" id="productname" placeholder="Tên sản phẩm">
+                    </div>
+
+                    <div class="form-group">
+                        <select required class="form-control" name="supplier" id="supplier">
+                            <option value="" disabled selected>Chọn nhà cung cấp</option>
+                            <?php
+                            while ($rowsup = mysqli_fetch_assoc($runsup)) { ?> ?>
+                                <option value="<?php echo $rowsup['MANCC']; ?>"><?php echo $rowsup['TENNCC']; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" class="form-control" id="price" placeholder="Giá sản phẩm">
+                            <input type="text" class="form-control" name="price" id="price" placeholder="Giá sản phẩm">
                         </div>
                         <div class="col-sm-6">
-                            <select required class="form-control" id="category">
+                            <select required class="form-control" name="category" id="category">
                                 <option value="" disabled selected>Chọn danh mục</option>
                                 <?php
-                                while($rowcat = mysqli_fetch_assoc($run)) { ?>                                ?>
-                                <option value="<?php echo $rowcat['idCL']; ?>"><?php echo $rowcat['tenCL']; ?></option>
+                                while ($rowcat = mysqli_fetch_assoc($run)) { ?> ?>
+                                    <option value="<?php echo $rowcat['MACL']; ?>"><?php echo $rowcat['TENCL']; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                     </div>
                     <div class="custom-file" style="margin-bottom:1rem">
-                        <input type="file" id="image" class="custom-file-input">
+                        <input type="file" name="image" id="image" class="custom-file-input">
                         <label id="image-label" class="custom-file-label" for="validatedCustomFile">Chọn hình ảnh sản phẩm</label>
                     </div>
                     <div class="container js-file-list">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" id="description" rows="10"></textarea>
+                        <textarea class="form-control" name="description" id="description" rows="10"></textarea>
                     </div>
                 </form>
             </div>

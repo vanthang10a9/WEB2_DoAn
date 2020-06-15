@@ -4,7 +4,7 @@ session_start();
 $USERNAME = $_SESSION['username'];
 $account = DataProvider::executeQuery("SELECT * FROM taikhoan WHERE USERNAME = '$USERNAME' LIMIT 1");
 $re = mysqli_fetch_assoc($account);
-if ($re['LEVEL'] != 3) {
+if ($re['LEVEL'] < 1) {
     header('location: ../login.php');
 }
 ?>
